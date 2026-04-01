@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import prefix from "@/lib/prefix";
 
 const projects = [
   {
@@ -11,28 +12,28 @@ const projects = [
     url: "https://rizmanruzaini.com/",
     description: "Luxury Fashion & Couture",
     color: "#8b6f4e",
-    screenshot: "/screenshot-rizman.jpg",
+    screenshot: "screenshot-rizman.jpg",
   },
   {
     title: "Laneige Singapore",
     url: "https://sg.laneige.com/",
     description: "K-Beauty & Skincare",
     color: "#1a6fa0",
-    screenshot: "/screenshot-laneige.jpg",
+    screenshot: "screenshot-laneige.jpg",
   },
   {
     title: "Sulwhasoo Singapore",
     url: "https://sg.sulwhasoo.com/",
     description: "Luxury Skincare",
     color: "#7a4b2e",
-    screenshot: "/screenshot-sulwhasoo.jpg",
+    screenshot: "screenshot-sulwhasoo.jpg",
   },
   {
     title: "KEFTS Singapore",
     url: "https://kefts.com.sg/",
     description: "LNG Energy & Trading",
     color: "#2d5a7b",
-    screenshot: "/screenshot-kefts.jpg",
+    screenshot: "screenshot-kefts.jpg",
   },
 ];
 
@@ -115,7 +116,7 @@ function ProjectCard({
       {/* Screenshot */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
-          src={project.screenshot}
+          src={`${prefix}/${project.screenshot}`}
           alt={`${project.title} website screenshot`}
           fill
           className="object-cover object-top transition-transform duration-700 group-hover:scale-105"

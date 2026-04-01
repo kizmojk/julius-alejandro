@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import prefix from "@/lib/prefix";
 
 const links = [
   { label: "About", href: "#about" },
@@ -53,7 +54,7 @@ export default function Nav() {
             </a>
           ))}
           <a
-            href="/Julius-Alejandro-Resume.pdf"
+            href={`${prefix}/Julius-Alejandro-Resume.pdf`}
             download
             className="ml-3 px-4 py-1.5 text-xs font-semibold text-white bg-accent hover:bg-accent-light rounded-full tracking-wide uppercase transition-colors duration-200"
           >
@@ -102,7 +103,7 @@ export default function Nav() {
                 </a>
               ))}
               <a
-                href="/Julius-Alejandro-Resume.pdf"
+                href={`${prefix}/Julius-Alejandro-Resume.pdf`}
                 download
                 className="mt-2 py-2.5 text-sm font-semibold text-accent tracking-wide uppercase"
               >

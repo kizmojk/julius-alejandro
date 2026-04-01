@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
+import prefix from "@/lib/prefix";
 
 const stagger: Variants = {
   hidden: {},
@@ -49,7 +50,7 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-[2rem] bg-accent/10 rotate-3" />
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-border shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
               <Image
-                src="/profile-avatar.jpg"
+                src={`${prefix}/profile-avatar.jpg`}
                 alt="Julius Kevin Alejandro"
                 fill
                 className="object-cover object-center hover:scale-105 transition-transform duration-700"

@@ -4,30 +4,31 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import prefix from "@/lib/prefix";
 
 const layouts = [
   {
     title: "L'Occitane en Provence",
     category: "Beauty & Skincare",
-    image: "/figma-loccitane.jpg",
+    image: "figma-loccitane.jpg",
     color: "#c5a644",
   },
   {
     title: "LIVA Honda",
     category: "Automotive Marketplace",
-    image: "/figma-liva.jpg",
+    image: "figma-liva.jpg",
     color: "#d42027",
   },
   {
     title: "Kawasaki",
     category: "Motorcycle Brand",
-    image: "/figma-kawasaki.jpg",
+    image: "figma-kawasaki.jpg",
     color: "#6cba41",
   },
   {
     title: "Le Creuset",
     category: "Premium Cookware",
-    image: "/figma-lecreuset.jpg",
+    image: "figma-lecreuset.jpg",
     color: "#e07b2e",
   },
 ];
@@ -59,7 +60,7 @@ export default function LayoutPortfolio() {
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <Image
-                    src={layout.image}
+                    src={`${prefix}/${layout.image}`}
                     alt={`${layout.title} — Figma layout design`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -154,7 +155,7 @@ export default function LayoutPortfolio() {
               {/* Image */}
               <div className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src={layouts[selected].image}
+                  src={`${prefix}/${layouts[selected].image}`}
                   alt={`${layouts[selected].title} — Figma layout design`}
                   fill
                   className="object-contain bg-black"
