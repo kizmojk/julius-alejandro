@@ -1,12 +1,31 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 
 const ParticleBackground = dynamic(
   () => import("@/components/ParticleBackground"),
   { ssr: false }
 );
+
+class ParticleErrorBoundary extends Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 export default function ParticleWrapper() {
   const [show, setShow] = useState(false);
@@ -26,5 +45,9 @@ export default function ParticleWrapper() {
   }, []);
 
   if (!show) return null;
-  return <ParticleBackground />;
+  return (
+    <ParticleErrorBoundary>
+      <ParticleBackground />
+    </ParticleErrorBoundary>
+  );
 }

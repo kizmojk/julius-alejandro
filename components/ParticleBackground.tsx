@@ -79,6 +79,7 @@ const ParticleBackground = memo(function ParticleBackground() {
         camera={{ position: [0, 0, 5], fov: 75 }}
         dpr={[1, 1.5]}
         gl={{ antialias: false, alpha: true }}
+        resize={{ debounce: 200 }}
         style={{ background: "transparent" }}
       >
         <Particles count={count} />
