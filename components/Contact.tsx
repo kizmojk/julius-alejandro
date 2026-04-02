@@ -132,7 +132,7 @@ export default function Contact() {
         <ScrollReveal delay={0.3}>
           <div className="mt-16 sm:mt-24 pt-6 sm:pt-8 border-t border-border">
             <p className="text-sm text-muted">
-              &copy; {new Date().getFullYear()} Julius Kevin Alejandro. Iloilo City, Philippines.
+              &copy; 2026 Julius Kevin Alejandro. Iloilo City, Philippines.
             </p>
           </div>
         </ScrollReveal>
