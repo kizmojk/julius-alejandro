@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect, useRef, Component } from "react";
 
 const ParticleBackground = dynamic(
   () => import("@/components/ParticleBackground"),
@@ -29,6 +29,8 @@ class ParticleErrorBoundary extends Component<
 
 export default function ParticleWrapper() {
   const [show, setShow] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const resizeTimer = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     // Only render Three.js on screens wider than 480px
@@ -42,9 +44,22 @@ export default function ParticleWrapper() {
     } catch {
       // WebGL not supported, skip particles
     }
+
+    // Unmount Canvas during resize to prevent React reconciler crash
+    const handleResize = () => {
+      setVisible(false);
+      if (resizeTimer.current) clearTimeout(resizeTimer.current);
+      resizeTimer.current = setTimeout(() => setVisible(true), 300);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (resizeTimer.current) clearTimeout(resizeTimer.current);
+    };
   }, []);
 
-  if (!show) return null;
+  if (!show || !visible) return null;
   return (
     <ParticleErrorBoundary>
       <ParticleBackground />
