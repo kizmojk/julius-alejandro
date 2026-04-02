@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import prefix from "@/lib/prefix";
 
 const links = [
@@ -23,15 +22,13 @@ export default function Nav() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 animate-fade-in ${
         scrolled
           ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
           : ""
       }`}
+      style={{ animationDelay: "0.8s" }}
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between h-14 sm:h-16">
         <a
@@ -82,37 +79,31 @@ export default function Nav() {
       </div>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="sm:hidden bg-background/95 backdrop-blur-lg border-b border-border overflow-hidden"
+      <div
+        className={`sm:hidden bg-background/95 backdrop-blur-lg border-b border-border overflow-hidden transition-all duration-250 ${
+          menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0 border-b-0"
+        }`}
+      >
+        <div className="flex flex-col px-6 py-4 gap-1">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="py-2.5 text-sm font-medium text-muted hover:text-accent tracking-wide uppercase transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={`${prefix}/Julius-Alejandro-Resume.pdf`}
+            download
+            className="mt-2 py-2.5 text-sm font-semibold text-accent tracking-wide uppercase"
           >
-            <div className="flex flex-col px-6 py-4 gap-1">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="py-2.5 text-sm font-medium text-muted hover:text-accent tracking-wide uppercase transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href={`${prefix}/Julius-Alejandro-Resume.pdf`}
-                download
-                className="mt-2 py-2.5 text-sm font-semibold text-accent tracking-wide uppercase"
-              >
-                Download Resume
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 }

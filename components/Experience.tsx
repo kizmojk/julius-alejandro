@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
 const jobs = [
@@ -41,14 +38,6 @@ const jobs = [
   },
 ];
 
-const lineVariants = {
-  hidden: { scaleY: 0 },
-  visible: {
-    scaleY: 1,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
 export default function Experience() {
   return (
     <section id="experience" className="py-16 sm:py-24 lg:py-32">
@@ -64,13 +53,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Timeline line */}
-          <motion.div
-            variants={lineVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="absolute left-[7px] sm:left-[9px] top-2 bottom-2 w-px bg-border origin-top"
-          />
+          <div className="absolute left-[7px] sm:left-[9px] top-2 bottom-2 w-px bg-border" />
 
           <div className="flex flex-col gap-10 sm:gap-12">
             {jobs.map((job, i) => (

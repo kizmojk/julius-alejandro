@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
 const designTools = [
@@ -30,22 +27,6 @@ const aiTools = [
   "AI Workflow Automation",
 ];
 
-const pillVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.06,
-      duration: 0.5,
-      type: "spring" as const,
-      stiffness: 200,
-      damping: 20,
-    },
-  }),
-};
-
 function SkillGroup({ title, skills }: { title: string; skills: string[] }) {
   return (
     <div className="flex flex-col gap-4">
@@ -55,23 +36,16 @@ function SkillGroup({ title, skills }: { title: string; skills: string[] }) {
       >
         {title}
       </h3>
-      <motion.div
-        className="flex flex-wrap gap-2.5"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
-      >
-        {skills.map((skill, i) => (
-          <motion.span
+      <div className="flex flex-wrap gap-2.5">
+        {skills.map((skill) => (
+          <span
             key={skill}
-            custom={i}
-            variants={pillVariants}
             className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-card-bg border border-border text-xs sm:text-sm font-medium text-foreground/80 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:border-accent/40 hover:text-accent active:border-accent/40 active:text-accent transition-colors duration-300"
           >
             {skill}
-          </motion.span>
+          </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
