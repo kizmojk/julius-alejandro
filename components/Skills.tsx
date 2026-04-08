@@ -17,6 +17,8 @@ const webTools = [
   "CSS3",
   "PHP",
   "JavaScript",
+  "React",
+  "TypeScript",
 ];
 
 const aiTools = [
