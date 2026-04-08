@@ -19,6 +19,7 @@ const webTools = [
   "JavaScript",
   "React",
   "TypeScript",
+  "Next.js",
 ];
 
 const aiTools = [
